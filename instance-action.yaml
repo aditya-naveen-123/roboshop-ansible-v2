@@ -5,7 +5,7 @@
     instances: ["mongodb", "catalogue", "frontend", "redis", "user", "cart", "shipping", "mysql", "rabbitmq", "payment"]
     project: "roboshop"
     task_to_perform: "create"
-    image_id: ami-0055977a6e828a4f4
+    image_id: ami-0220d79f3f480ecf5
     domain_name: adityabuilds.fun
   tasks:
   - name: create instances.
@@ -85,6 +85,5 @@
       name: "{{project}}-{{item}}"
     loop: "{{instances}}"
     when: task_to_perform == "delete"
-
 
 
