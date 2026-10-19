@@ -5,8 +5,9 @@
     tasks_from: app-setup
 
 - name: java setup
-  import_role: common
-  tasks_from: java-setup
+  import_role:
+    name: common
+    tasks_from: java-setup
 
 - name: Systemd setup
   import_role:
