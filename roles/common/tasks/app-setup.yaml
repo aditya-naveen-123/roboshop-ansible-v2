@@ -1,0 +1,34 @@
+- name: creating roboshop system user
+  user:
+    name: roboshop
+    system: true
+    shell: /sbin/nologin
+    home: /app
+    comment: "roboshop system user"
+
+- name: remove an app directory
+  file:
+    path: /app
+    state: absent
+
+- name: delete code zip file in temp
+  file:
+    path: "/tmp/{{component}}.zip"
+    state: absent
+
+- name: create an app directory
+  file:
+    path: /app
+    state: directory
+
+- name: create code directory
+  get_url:
+    url: "https://roboshop-artifacts.s3.amazonaws.com/{{component}}-v3.zip"
+    dest: "/tmp/{{component}}.zip"
+
+- name: unzip downloaded code
+  unarchive:
+    src: "/tmp/{{component}}.zip"
+    dest: /app
+    remote_src: true
+

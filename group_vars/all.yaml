@@ -1,0 +1,11 @@
+ansible_user: ec2-user
+ansible_password: DevOps321
+MONGODB_SERVER_IP: mongodb.adityabuilds.fun
+REDIS_IP_ADDRESS: redis.adityabuilds.fun
+CATALOGUE_SERVER_IP: catalogue.adityabuilds.fun
+CART_SERVER_IPADDRESS: cart.adityabuilds.fun
+MYSQL_SERVER_IP_ADDRESS: mysql.adityabuilds.fun
+USER_SERVER_IPADDRESS: user.adityabuilds.fun
+RABBITMQ_SERVER_IP_ADDRESS: rabbitmq.adityabuilds.fun
+SHIPPING_SERVER_IP_ADDRESS: shipping.adityabuilds.fun
+PAYMENT_SERVER_IP_ADDRESS: payment.adityabuilds.fun

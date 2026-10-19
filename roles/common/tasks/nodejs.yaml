@@ -1,0 +1,15 @@
+- name: Disabling node js different version
+  command: dnf module disable nodejs -y
+
+- name: enabling node js verison 20
+  command: dnf module enable nodejs:20 -y
+
+- name: Installing node js version 20
+  package:
+    name: nodejs 
+    state: present
+
+- name: installing npm dependencies
+  community.general.npm:
+    path: /app
+    state: present

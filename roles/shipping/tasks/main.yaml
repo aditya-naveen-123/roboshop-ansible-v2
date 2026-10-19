@@ -1,0 +1,39 @@
+
+- name: App setup
+  import_role:
+    name: common
+    tasks_from: app-setup
+
+- name: java setup
+  import_role: common
+  tasks_from: java-setup
+
+- name: Systemd setup
+  import_role:
+    name: common
+    tasks_from: systemd-setup
+
+- name: install python dependencies
+  pip:
+    name: PyMySQL
+    executable: pip3.9
+
+
+- name: loading data into mysql
+  community.mysql.mysql_db:
+    state: import
+    name: all
+    login_user: "{{MYSQL_USER}}"
+    login_password: "{{MYSQL_PASSWORD}}"
+    login_host: "{{ MYSQL_SERVER_IP_ADDRESS }}"
+    target: "{{ item }}"
+  loop:
+  - /app/db/schema.sql
+  - /app/db/app-user.sql
+  - /app/db/master-data.sql
+
+- name: start and enable cart service
+  service:
+    name: shipping
+    state: restarted
+    enabled: yes

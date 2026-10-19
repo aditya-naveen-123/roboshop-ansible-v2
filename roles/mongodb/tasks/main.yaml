@@ -1,0 +1,21 @@
+- name: copying mongo repo to the destination
+  copy: 
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+    #remote_src: true
+
+- name: install mongo db package
+  package:
+    name: mongodb-org
+    state: present
+
+- name: updating connections from all IP
+  replace:
+    path: /etc/mongod.conf
+    regexp: 127.0.0.1
+    replace: 0.0.0.0
+- name: starting and enabling mongodb
+  service:
+    name: mongod
+    state: started
+    enabled: yes
